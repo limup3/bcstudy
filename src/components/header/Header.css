@@ -1,0 +1,25 @@
+.Header_Left{
+    margin : 0.3rem;
+    padding : 0.2rem;
+    float : left;
+    max-width:100%;
+    height:35px;
+}
+
+.Header_Right{
+    margin : 0.3rem;
+    padding : 0.2rem;
+    float : right;
+    max-width:100%;
+    height:35px;
+}
+
+.Container {
+   height: 100px;
+}
+.Big_Container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
