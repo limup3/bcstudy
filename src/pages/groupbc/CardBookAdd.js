@@ -55,7 +55,11 @@ export default function CardBookAdd({ match }) {
         };
 
         axios
-            .post(`/api/businesscardbook/`, { name: bcBookId, user_id: match.params.user_id, group_id: match.params.id }, headers)
+            .post(
+                `https://bcbackend.azurewebsites.net/api/businesscardbook/`,
+                { name: bcBookId, user_id: match.params.user_id, group_id: match.params.id },
+                headers
+            )
             .then((response) => {
                 history.push({
                     pathname: "/BcImport",

@@ -32,7 +32,11 @@ export default function GroupRename({ match }) {
         };
 
         axios
-            .put(`/api/groupbusinesscard/${match.params.id}/`, { name: groupName, user_id: match.params.user_id }, headers)
+            .put(
+                `https://bcbackend.azurewebsites.net/api/groupbusinesscard/${match.params.id}/`,
+                { name: groupName, user_id: match.params.user_id },
+                headers
+            )
             .then((response) => {
                 history.push({
                     pathname: "/MyBc",

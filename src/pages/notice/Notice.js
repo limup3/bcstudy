@@ -25,7 +25,7 @@ export default function Notice() {
             },
         };
         axios
-            .get(`/api/notice/`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/notice/`, headers)
             .then((response) => {
                 setNoticeList(response.data);
             })

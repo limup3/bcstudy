@@ -69,11 +69,11 @@ export default function BcImport() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 // 유저 키값 호출
                 axios
-                    .get(`/api/businesscard?user_id=${response.data.pk}`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscard?user_id=${response.data.pk}`, headers)
                     .then((response) => {
                         //로그인한 유저 데이터 호출
                         setBcList(response.data);
@@ -82,7 +82,7 @@ export default function BcImport() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
                     .then((response) => {
                         // 로그인한 유저 ocr데이터 호출
                         setOcrList(response.data);
@@ -138,14 +138,14 @@ export default function BcImport() {
                 },
             };
             axios
-                .get("/api/rest-auth/user/", headers)
+                .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
                 .then((response) => {
                     //location값으로 어디서 왔는지 분류
                     //GroupAddNext -> BcImport
                     if (location.state.addBookId) {
                         axios
                             .put(
-                                `/api/businesscard/${data.id}/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscard/${data.id}/`,
                                 {
                                     book_id: location.state.addBookId,
                                     my_bc: data.my_bc,
@@ -165,7 +165,7 @@ export default function BcImport() {
                     else if (location.state.BookId) {
                         axios
                             .put(
-                                `/api/businesscard/${data.id}/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscard/${data.id}/`,
                                 {
                                     book_id: location.state.BookId,
                                     my_bc: data.my_bc,

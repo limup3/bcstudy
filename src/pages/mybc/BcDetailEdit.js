@@ -71,7 +71,7 @@ export default function BcDetailEdit() {
         };
 
         axios
-            .put(`/api/businesscard/${location.state.id}/`, bcJson, headers)
+            .put(`https://bcbackend.azurewebsites.net/api/businesscard/${location.state.id}/`, bcJson, headers)
             .then((response) => {
                 history.goBack();
             })
@@ -94,7 +94,7 @@ export default function BcDetailEdit() {
         };
 
         axios
-            .delete(`/api/businesscard/${location.state.id}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/businesscard/${location.state.id}/`, headers)
             .then((response) => {
                 history.push("/Mybc");
             })

@@ -48,7 +48,7 @@ export default function GroupAddNext() {
             };
             axios
                 .delete(
-                    `/api/groupbusinesscard/${location.state.groupPk}`,
+                    `https://bcbackend.azurewebsites.net/api/groupbusinesscard/${location.state.groupPk}`,
                     { name: location.state.groupId, user_id: location.state.userPk },
                     headers
                 )
@@ -82,7 +82,11 @@ export default function GroupAddNext() {
         };
 
         axios
-            .post(`/api/businesscardbook/`, { name: bcBookId, user_id: location.state.userPk, group_id: location.state.groupPk }, headers)
+            .post(
+                `https://bcbackend.azurewebsites.net/api/businesscardbook/`,
+                { name: bcBookId, user_id: location.state.userPk, group_id: location.state.groupPk },
+                headers
+            )
             .then((response) => {
                 history.push({
                     pathname: "/BcImport",

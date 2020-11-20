@@ -41,7 +41,7 @@ export default function EditFooter(props) {
             };
 
             axios
-                .delete(`/api/businesscard/${data.id}/`, headers)
+                .delete(`https://bcbackend.azurewebsites.net/api/businesscard/${data.id}/`, headers)
                 .then((response) => {
                     history.push({
                         pathname: "/MyBc",

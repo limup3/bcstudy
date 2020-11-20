@@ -79,7 +79,7 @@ const ChangePw = () => {
             };
             //토큰 헤더로 보내기
             axios
-                .post(`/api/rest-auth/password/change/`, userJson, headers)
+                .post(`https://bcbackend.azurewebsites.net/api/rest-auth/password/change/`, userJson, headers)
                 .then((response) => {
                     alert("비밀번호 재설정 완료 !");
                     // history.push({

@@ -101,11 +101,11 @@ export default function BcEdit() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 //Mybc에서 정렬한 데이터 넘겨줘서 편집모드에서도 데이터 정렬한형태로 보여주기
                 axios
-                    .get(`/api/businesscard?user_id=${response.data.pk}${userSorting}`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscard?user_id=${response.data.pk}${userSorting}`, headers)
                     .then((response) => {
                         setBcList(response.data);
                     })
@@ -113,7 +113,7 @@ export default function BcEdit() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
                     .then((response) => {
                         // 로그인한 유저 ocr데이터 호출
                         setOcrList(response.data);

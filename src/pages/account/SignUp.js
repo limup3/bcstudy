@@ -57,7 +57,7 @@ const SignUp = () => {
                 password2: passwordConfirm,
             };
             axios
-                .post(`/api/rest-auth/registration/`, userJson)
+                .post(`https://bcbackend.azurewebsites.net/api/rest-auth/registration/`, userJson)
                 .then((response) => {
                     history.push("/");
                 })

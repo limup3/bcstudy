@@ -66,7 +66,7 @@ const Login = () => {
             password: password,
         };
         axios
-            .post("/api/rest-auth/login/", userJson)
+            .post("https://bcbackend.azurewebsites.net/api/rest-auth/login/", userJson)
             .then((response) => {
                 if (checked === true) {
                     localStorage.setItem("userKey", JSON.stringify(response.data.key));

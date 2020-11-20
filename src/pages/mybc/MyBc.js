@@ -79,11 +79,11 @@ export default function MyBc() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 // 유저 키값 호출
                 axios
-                    .get(`/api/businesscard?user_id=${response.data.pk}&my_bc=1`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscard?user_id=${response.data.pk}&my_bc=1`, headers)
                     .then((response) => {
                         // 내명함인지 판단
                         response.data.forEach(function (data, idx) {
@@ -96,7 +96,10 @@ export default function MyBc() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscard?user_id=${response.data.pk}&ocr_id_type=Success${userSorting}`, headers)
+                    .get(
+                        `https://bcbackend.azurewebsites.net/api/businesscard?user_id=${response.data.pk}&ocr_id_type=Success${userSorting}`,
+                        headers
+                    )
                     .then((response) => {
                         //로그인한 유저 데이터 호출 , sorting
                         setBcList(response.data);
@@ -105,7 +108,7 @@ export default function MyBc() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
                     .then((response) => {
                         // 로그인한 유저 ocr데이터 호출
                         setOcrList(response.data);
@@ -114,10 +117,13 @@ export default function MyBc() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Unrecognizable`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Unrecognizable`, headers)
                     .then((UnrecognizableResponse) => {
                         axios
-                            .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Recognizing`, headers)
+                            .get(
+                                `https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Recognizing`,
+                                headers
+                            )
                             .then((RecognizingResponse) => {
                                 // 인식 실패 + 인식중 명함 개수 가져오기
                                 setBcEntering(UnrecognizableResponse.data.length + RecognizingResponse.data.length);
@@ -202,12 +208,12 @@ export default function MyBc() {
                 };
                 //유저 키값을 가져온 뒤 ocrDB에 base64데이터 전송
                 axios
-                    .get("/api/rest-auth/user/", headers)
+                    .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
                     .then((response) => {
                         setLoading(true);
                         axios
                             .post(
-                                `/api/businesscardocr/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscardocr/`,
                                 {
                                     type: "Unrecognizable",
                                     user_id: response.data.pk,

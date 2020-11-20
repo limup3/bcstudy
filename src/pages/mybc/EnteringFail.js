@@ -65,10 +65,10 @@ export default function Entering() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Unrecognizable`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Unrecognizable`, headers)
                     .then((response) => {
                         setBcList(response.data);
                     })
@@ -122,7 +122,7 @@ export default function Entering() {
             };
 
             axios
-                .delete(`/api/businesscardocr/${data.id}/`, headers)
+                .delete(`https://bcbackend.azurewebsites.net/api/businesscardocr/${data.id}/`, headers)
                 .then((response) => {
                     window.location.reload();
                     setEdit(false);

@@ -39,14 +39,14 @@ export default function BcDetail({ match }) {
         var timezoneDate = new Date(Date.now() - timezoneOffset);
 
         axios
-            .get(`/api/businesscard/${match.params.id}`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/businesscard/${match.params.id}`, headers)
             .then((response) => {
                 setBcItem(response.data);
                 if (response.data.ocr_id !== null) {
                     axios
                         .get(
                             //이미지 가져오기
-                            `/api/businesscardocr/${response.data.ocr_id}`,
+                            `https://bcbackend.azurewebsites.net/api/businesscardocr/${response.data.ocr_id}`,
                             headers
                         )
                         .then((ocrResponse) => {
@@ -60,7 +60,7 @@ export default function BcDetail({ match }) {
                 axios
                     .put(
                         //최근 조회 업데이트
-                        `/api/businesscard/${match.params.id}/`,
+                        `https://bcbackend.azurewebsites.net/api/businesscard/${match.params.id}/`,
                         {
                             user_id: response.data.user_id,
                             my_bc: response.data.my_bc,
@@ -134,7 +134,7 @@ export default function BcDetail({ match }) {
         };
 
         axios
-            .delete(`/api/businesscard/${bcItem.id}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/businesscard/${bcItem.id}/`, headers)
             .then((response) => {
                 history.push("/Mybc");
             })

@@ -55,11 +55,15 @@ export default function GroupAdd() {
         };
 
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 var userPk = response.data.pk;
                 axios
-                    .post(`/api/groupbusinesscard/`, { name: groupId, user_id: response.data.pk }, headers)
+                    .post(
+                        `https://bcbackend.azurewebsites.net/api/groupbusinesscard/`,
+                        { name: groupId, user_id: response.data.pk },
+                        headers
+                    )
                     .then((response) => {
                         history.push({
                             pathname: "/GroupAddNext",

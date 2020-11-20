@@ -28,7 +28,7 @@ export default function GroupBcRename({ match }) {
             },
         };
         axios
-            .get(`/api/businesscardbook/${match.params.id}/`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/businesscardbook/${match.params.id}/`, headers)
             .then((response) => {
                 setBookName(response.data.name);
             })
@@ -52,7 +52,7 @@ export default function GroupBcRename({ match }) {
         };
         axios
             .patch(
-                `/api/businesscardbook/${match.params.id}/`,
+                `https://bcbackend.azurewebsites.net/api/businesscardbook/${match.params.id}/`,
                 {
                     name: bookName,
                 },

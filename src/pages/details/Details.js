@@ -93,12 +93,12 @@ export default function Details() {
                 };
                 //유저 키값을 가져온 뒤 ocrDB에 base64데이터 전송
                 axios
-                    .get("/api/rest-auth/user/", headers)
+                    .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
                     .then((response) => {
                         setLoading(true);
                         axios
                             .post(
-                                `/api/businesscardocr/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscardocr/`,
                                 {
                                     type: "Recognizing",
                                     user_id: response.data.pk,

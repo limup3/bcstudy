@@ -27,7 +27,7 @@ export default function NoticeDetail({ match }) {
         };
 
         axios
-            .get(`/api/notice/${match.params.id}`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/notice/${match.params.id}`, headers)
             .then((response) => {
                 setNoticeData(response.data);
             })

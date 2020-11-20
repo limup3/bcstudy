@@ -34,7 +34,7 @@ export default function EFDetail({ match }) {
         };
 
         axios
-            .get(`/api/businesscardocr/${match.params.id}`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/businesscardocr/${match.params.id}`, headers)
             .then((response) => {
                 setEFData(response.data);
             })
@@ -57,7 +57,7 @@ export default function EFDetail({ match }) {
         };
 
         axios
-            .delete(`/api/businesscardocr/${match.params.id}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/businesscardocr/${match.params.id}/`, headers)
             .then((response) => {
                 history.push({
                     pathname: "/BcEntering",
@@ -105,12 +105,12 @@ export default function EFDetail({ match }) {
                 };
                 //유저 키값을 가져온 뒤 ocrDB에 base64데이터 전송
                 axios
-                    .get("/api/rest-auth/user/", headers)
+                    .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
                     .then((response) => {
                         setLoading(true);
                         axios
                             .post(
-                                `/api/businesscardocr/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscardocr/`,
                                 {
                                     type: "Recognizing",
                                     user_id: response.data.pk,
@@ -122,7 +122,7 @@ export default function EFDetail({ match }) {
                             .then((ocrResponse) => {
                                 //성공 시 인식 된 명함 가져오기
                                 axios
-                                    .get(`/api/businesscardocr/${ocrResponse.data.id}`, headers)
+                                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr/${ocrResponse.data.id}`, headers)
                                     .then((getOcrResponse) => {
                                         if (getOcrResponse.data.type === "Unrecognizable") {
                                             setLoading(false);

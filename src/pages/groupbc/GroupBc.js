@@ -66,10 +66,10 @@ export default function Groupbc() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 axios
-                    .get(`/api/groupbusinesscard?user_id=${response.data.pk}`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/groupbusinesscard?user_id=${response.data.pk}`, headers)
                     .then((response) => {
                         setGroupBcList(response.data);
                     })
@@ -77,7 +77,7 @@ export default function Groupbc() {
                         throw error;
                     });
                 axios
-                    .get(`/api/businesscardbook?user_id=${response.data.pk}`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardbook?user_id=${response.data.pk}`, headers)
                     .then((response) => {
                         setBookBcList(response.data);
                     })
@@ -104,7 +104,7 @@ export default function Groupbc() {
             },
         };
         axios
-            .delete(`/api/groupbusinesscard/${myValue}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/groupbusinesscard/${myValue}/`, headers)
             .then((response) => {
                 window.location.reload();
             })

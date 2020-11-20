@@ -78,7 +78,7 @@ export default function BcTyping() {
             },
         };
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 setUser_id(response.data.pk);
             })
@@ -136,11 +136,11 @@ export default function BcTyping() {
                 user_id: user_id,
             };
             axios
-                .post(`/api/businesscardocr/`, ocrJson, headers)
+                .post(`https://bcbackend.azurewebsites.net/api/businesscardocr/`, ocrJson, headers)
                 .then((response) => {
                     axios
                         .post(
-                            "/api/businesscard/",
+                            "https://bcbackend.azurewebsites.net/api/businesscard/",
                             {
                                 name: bcData.bcinformation.bcName,
                                 company_name: bcData.bcinformation.bcCompany,
@@ -211,11 +211,11 @@ export default function BcTyping() {
                 user_id: user_id,
             };
             axios
-                .post(`/api/businesscardocr/`, ocrJson, headers)
+                .post(`https://bcbackend.azurewebsites.net/api/businesscardocr/`, ocrJson, headers)
                 .then((response) => {
                     axios
                         .post(
-                            "/api/businesscard/",
+                            "https://bcbackend.azurewebsites.net/api/businesscard/",
                             {
                                 name: bcData.bcinformation.bcName,
                                 company_name: bcData.bcinformation.bcCompany,
@@ -292,12 +292,12 @@ export default function BcTyping() {
                 };
                 //유저 키값을 가져온 뒤 ocrDB에 base64데이터 전송
                 axios
-                    .get("/api/rest-auth/user/", headers)
+                    .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
                     .then((response) => {
                         setLoading(true);
                         axios
                             .post(
-                                `/api/businesscardocr/`,
+                                `https://bcbackend.azurewebsites.net/api/businesscardocr/`,
                                 {
                                     type: "Recognizing",
                                     user_id: response.data.pk,

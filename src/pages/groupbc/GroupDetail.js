@@ -83,7 +83,7 @@ export default function GroupDetail({ match }) {
         };
         //명함첩에 등록된 데이터 호출하는 axios
         axios
-            .get(`/api/businesscard?book_id=${match.params.id}${userSorting}`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/businesscard?book_id=${match.params.id}${userSorting}`, headers)
             .then((response) => {
                 setBcList(response.data);
             })
@@ -92,11 +92,11 @@ export default function GroupDetail({ match }) {
             });
         //OCR 이미지 가져오기 위해 데이터 호출하는 axios
         axios
-            .get("/api/rest-auth/user/", headers)
+            .get("https://bcbackend.azurewebsites.net/api/rest-auth/user/", headers)
             .then((response) => {
                 setUserId(response.data.pk);
                 axios
-                    .get(`/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscardocr?user_id=${response.data.pk}&type=Success`, headers)
                     .then((response) => {
                         setOcrList(response.data);
                     })
@@ -194,12 +194,16 @@ export default function GroupDetail({ match }) {
                 },
             };
             axios
-                .get(`/api/businesscard/?book_id=${data.book_id}`, headers)
+                .get(`https://bcbackend.azurewebsites.net/api/businesscard/?book_id=${data.book_id}`, headers)
                 .then((response) => {
                     response.data.forEach(function (data2, idx) {
                         if (data.id === data2.id) {
                             axios
-                                .put(`/api/businesscard/${data2.id}/`, { book_id: null, my_bc: false, user_id: data2.user_id }, headers)
+                                .put(
+                                    `https://bcbackend.azurewebsites.net/api/businesscard/${data2.id}/`,
+                                    { book_id: null, my_bc: false, user_id: data2.user_id },
+                                    headers
+                                )
 
                                 .then((response) => {
                                     history.push({
@@ -233,7 +237,7 @@ export default function GroupDetail({ match }) {
         };
 
         axios
-            .delete(`/api/businesscardbook/${match.params.id}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/businesscardbook/${match.params.id}/`, headers)
             .then((response) => {
                 history.push({
                     pathname: "/MyBc",

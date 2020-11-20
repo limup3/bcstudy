@@ -52,11 +52,11 @@ export default function EnteringEdit({ match }) {
         };
 
         axios
-            .get(`/api/businesscard?ocr_id=${match.params.id}`, headers)
+            .get(`https://bcbackend.azurewebsites.net/api/businesscard?ocr_id=${match.params.id}`, headers)
             .then((response) => {
                 //bccard 테이블에서 ocrid가 일치하는 데이터 찾기
                 axios
-                    .get(`/api/businesscard/${response.data[0].id}/`, headers)
+                    .get(`https://bcbackend.azurewebsites.net/api/businesscard/${response.data[0].id}/`, headers)
                     .then((response) => {
                         //찾았으면 데이터 가져오기
                         setId(response.data.id);
@@ -120,10 +120,10 @@ export default function EnteringEdit({ match }) {
         };
 
         axios
-            .put(`/api/businesscard/${id}/`, bcJson, headers)
+            .put(`https://bcbackend.azurewebsites.net/api/businesscard/${id}/`, bcJson, headers)
             .then((response) => {
                 axios
-                    .patch(`/api/businesscardocr/${match.params.id}/`, ocrJson, headers)
+                    .patch(`https://bcbackend.azurewebsites.net/api/businesscardocr/${match.params.id}/`, ocrJson, headers)
                     .then((response) => {
                         history.goBack();
                     })
@@ -152,7 +152,7 @@ export default function EnteringEdit({ match }) {
         };
 
         axios
-            .delete(`/api/businesscardocr/${match.params.id}/`, headers)
+            .delete(`https://bcbackend.azurewebsites.net/api/businesscardocr/${match.params.id}/`, headers)
             .then((response) => {
                 history.push("/Mybc");
             })
